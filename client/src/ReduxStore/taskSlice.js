@@ -127,5 +127,6 @@ export const taskSlice = createSlice({
 //export const {sortTasks} = taskSlice.actions;
 
 export const selectAllTasks = (state) => state.task.tasks;
+export const selectStatus = (state) => state.task.status;
 
 export default taskSlice.reducer;

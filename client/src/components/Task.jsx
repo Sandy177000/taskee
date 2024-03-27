@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { MdModeEdit } from "react-icons/md";
 import { IoMdTrash } from "react-icons/io";
 import { useDispatch } from "react-redux";
-import { deleteTaskAsync, updateTaskAsync } from "../ReduxStore/taskSlice";
+import { deleteTaskAsync } from "../ReduxStore/taskSlice";
+import { motion } from "framer-motion";
 
-function Task({ handleEdit, task}) {
+function Task({ handleEdit, task, index }) {
   const [openDetails, setOpenDetails] = useState(false);
   const [ratingInfo, setRatingInfo] = useState({});
 
@@ -16,31 +17,38 @@ function Task({ handleEdit, task}) {
 
   const getRatingInfo = (rating) => {
     if (rating === 0) {
-      setRatingInfo({ color: "yellow", title: "Low" });
+      setRatingInfo({ color: "#eff7097f", title: "Low" });
       return;
     } else if (rating === 1) {
-      setRatingInfo({ color: "orange", title: "Medium" });
+      setRatingInfo({ color: "#ff6600a1", title: "Medium" });
       return;
+    } else {
+      setRatingInfo({ color: "#ff000094", title: "High" });
     }
-
-    setRatingInfo({ color: "red", title: "High" });
   };
 
   useEffect(() => {
     getRatingInfo(task.rating);
   }, [task]);
 
-
   const handleDelete = () => {
     dispatch(deleteTaskAsync(task.id));
   };
 
   return (
-    <div
-      className="flex w-[90%]  bg-blue-300 p-3 rounded-lg justify-center m-1 cursor-pointer flex-col relative"
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        type: "spring",
+        duration: 1,
+        delay: index * 0.05,
+      }}
+      className="flex w-[90%]  bg-[#1f1f1f] p-3 rounded-lg justify-center cursor-pointer flex-col relative"
       onClick={handleDetails}
     >
-      <div className="flex items-center">
+      <div className="flex items-center mb-2">
         <input
           type="checkbox"
           name={task.taskName}
@@ -50,20 +58,49 @@ function Task({ handleEdit, task}) {
         <p>{task.taskName}</p>
       </div>
 
-      <div className={`${openDetails ? "flex ml-7 flex-col" : "hidden"}`}>
-        <div className="flex">
-          <MdModeEdit className="h-5 w-5 m-1" onClick={()=>handleEdit(task)} />
-          <IoMdTrash className="h-5 w-5 m-1" onClick={handleDelete} />
+      <div
+        className={`${
+          openDetails ? "flex ml-7 flex-col" : "hidden"
+        } transition-all duration-1000 ease-in`}
+      >
+        {task.taskDetails.length ? (
           <div
-            className={"flex rounded-lg p-1"}
-            style={{ background: ratingInfo.color }}
+            className={`flex w-full h-max p-1 rounded-sm ${"border-[1px] border-[#000000] p-2 overflow-auto"}`}
           >
-            {ratingInfo.title}
+            {task.taskDetails}
+          </div>
+        ) : (
+          <div className="text-[#5c5c5c]">No details available</div>
+        )}
+
+        <div className="flex mt-3 w-full justify-between">
+          <div className="flex">
+            {
+              task.createdAt
+            }
+          </div>
+          <div className="flex gap-3">
+            <div
+              className="flex items-center border-[1px] border-[#3c3c3c] p-[7px] rounded-md hover:scale-105"
+              onClick={() => handleEdit(task)}
+            >
+              <MdModeEdit className="h-4 w-4" />
+            </div>
+            <div className="flex items-center border-[1px] border-[#3c3c3c] p-[7px] rounded-md bg-[#d71111cd] hover:scale-105">
+              <IoMdTrash className="h-4 w-4" onClick={handleDelete} />
+            </div>
+            <div
+              className={
+                "flex rounded-md p-[2px] w-[70px] items-center justify-center text-[12.5px]"
+              }
+              style={{ background: ratingInfo.color }}
+            >
+              {ratingInfo.title}
+            </div>
           </div>
         </div>
-        <div className="flex">{task.taskDetails}</div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

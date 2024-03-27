@@ -1,5 +1,27 @@
+*{
+  color: #ffffff;
+}
+
+body{
+
+  background: #121212;
+}
 .nav{
-  background: #000;
   right: 0px;
   transition: all 0.5s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar{
+    width: 8px;
+    background-color: #1f1f1f;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.09); 
+}
+
+
+label{
+  color: #868686;
 }
