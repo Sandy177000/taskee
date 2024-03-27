@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// npx prisma db push 
+// npx prisma generate
+
+model Task{
+  id  String @id @default(auto()) @map("_id") @db.ObjectId
+  taskName String 
+  taskDetails String
+  rating Int
+  status String
+  createdAt DateTime @default(now())
+}
+
+
+
