@@ -11,6 +11,7 @@ import axios from "axios";
 
 const initialState = {
   tasks: [],
+  completedTasks:[],
   status: "idle",
 };
 
@@ -43,6 +44,14 @@ export const getSortedTasksAsync = createAsyncThunk(
   }
 );
 
+
+export const getCompletedTasksAsync = createAsyncThunk(
+  "task/getSortedTasks",
+  async () => {
+    return response.data;
+  }
+);
+
 export const deleteTaskAsync = createAsyncThunk(
   "task/deleteTask",
   async (taskId) => {
@@ -57,6 +66,7 @@ export const deleteTaskAsync = createAsyncThunk(
     return null;
   }
 );
+
 export const updateTaskAsync = createAsyncThunk(
   "task/updateTask",
   async (taskData) => {
@@ -68,14 +78,20 @@ export const updateTaskAsync = createAsyncThunk(
 );
 
 
+
 export const taskSlice = createSlice({
   name: "task",
   initialState,
   reducers: {
+    completedTasks: (state)=>{
+       state.completedTasks = state.tasks.filter((task)=>task.status==='Complete')
+    }
     // sortTasks: (state) => {
     //   state.tasks.sort((b, a) => a.rating - b.rating);
     // },
   }, // <-non async functions are included in here
+
+
   extraReducers: (builder) =>
     builder
       .addCase(addTaskAsync.pending, (state) => {
@@ -126,7 +142,10 @@ export const taskSlice = createSlice({
 
 //export const {sortTasks} = taskSlice.actions;
 
+export const {completedTasks} = taskSlice.actions;
+
 export const selectAllTasks = (state) => state.task.tasks;
 export const selectStatus = (state) => state.task.status;
+export const selectCompletedTasks = (state) => state.task.completedTasks;
 
 export default taskSlice.reducer;

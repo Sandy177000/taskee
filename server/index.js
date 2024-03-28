@@ -7,10 +7,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
   })
 );
 app.use(express.json());
 app.use("/api/task", taskRouter);
 
-app.listen(3000, console.log("Server at 3000"));
+app.listen(3000, console.log("Server running at 3000"));

@@ -2,7 +2,7 @@ import getPrismaInstance from "../prisma/prismaClient.js";
 
 export const addTask = async (req, res) => {
   try {
-    const { taskName, taskDetails, rating, status } = req.body;
+    const { taskName, taskDetails, rating, status,dueDate } = req.body;
 
     let prisma = getPrismaInstance();
     let data = await prisma.task.create({
@@ -11,6 +11,7 @@ export const addTask = async (req, res) => {
         taskDetails,
         rating: parseInt(rating),
         status,
+        dueDate
       },
     });
     
@@ -32,6 +33,7 @@ export const getAllTasks = async (req, res) => {
         taskDetails: true,
         rating: true,
         status: true,
+        dueDate: true,
         createdAt: true,
       },
     });
@@ -55,6 +57,7 @@ export const getSortedTasks = async (req, res) => {
         taskDetails: true,
         rating: true,
         status: true,
+        dueDate:true,
         createdAt: true,
       },
     });
@@ -63,6 +66,8 @@ export const getSortedTasks = async (req, res) => {
     console.log(error);
   }
 };
+
+
 
 export const deleteTask = async (req, res) => {
   try {
@@ -84,8 +89,9 @@ export const deleteTask = async (req, res) => {
 
 export const updateTask = async (req, res) => {
   try {
-    const { taskId, taskName, taskDetails, rating, status } = req.body;
+    const { taskId, taskName, taskDetails, rating, status,dueDate } = req.body;
 
+    
     let prisma = getPrismaInstance();
     let data = await prisma.task.update({
       where: {
@@ -96,6 +102,7 @@ export const updateTask = async (req, res) => {
         taskDetails,
         rating: parseInt(rating),
         status,
+        dueDate
       },
     });
 
