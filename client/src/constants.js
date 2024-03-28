@@ -1,4 +1,4 @@
-export const SERVER_URL = "http://localhost:3000"
+export const SERVER_URL = "http://localhost:3000" // server 
 
 export const ADD_TASK = `${SERVER_URL}/api/task/add-task`
 export const GET_ALL_TASKS = `${SERVER_URL}/api/task/get-all-tasks`

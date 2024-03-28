@@ -18,9 +18,9 @@ const initialState = {
 export const addTaskAsync = createAsyncThunk(
   "task/addTask",
   async (taskData) => {
-    console.log(taskData);
+    (taskData);
     const response = await axios.post(ADD_TASK, taskData);
-    console.log(response.data);
+    (response.data);
     return response.data;
   }
 );
@@ -29,7 +29,7 @@ export const getAllTasksAsync = createAsyncThunk(
   "task/getAllTasks",
   async () => {
     const response = await axios.get(GET_ALL_TASKS);
-    console.log(response.data);
+    (response.data);
     return response.data;
   }
 );
@@ -39,7 +39,7 @@ export const getSortedTasksAsync = createAsyncThunk(
   "task/getSortedTasks",
   async () => {
     const response = await axios.get(GET_SORTED_TASKS);
-    console.log(response.data);
+    (response.data);
     return response.data;
   }
 );
@@ -55,10 +55,10 @@ export const getCompletedTasksAsync = createAsyncThunk(
 export const deleteTaskAsync = createAsyncThunk(
   "task/deleteTask",
   async (taskId) => {
-    console.log(taskId);
+    (taskId);
     const response = await axios.post(DELETE_TASK, { taskId });
 
-    console.log(response.status);
+    (response.status);
     if (response.status == 200) {
       return response.data;
     }
@@ -70,9 +70,9 @@ export const deleteTaskAsync = createAsyncThunk(
 export const updateTaskAsync = createAsyncThunk(
   "task/updateTask",
   async (taskData) => {
-    console.log(taskData);
+    (taskData);
     const response = await axios.put(UPDATE_TASK, taskData);
-    console.log(response.data);
+    (response.data);
     return response.data;
   }
 );

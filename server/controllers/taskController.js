@@ -15,10 +15,10 @@ export const addTask = async (req, res) => {
       },
     });
     
-    console.log("New task added!")
+    ("New task added!")
     return res.status(200).send(data);
   } catch (error) {
-    console.log(error.message);
+    (error.message);
   }
 };
 
@@ -39,7 +39,8 @@ export const getAllTasks = async (req, res) => {
     });
     return res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    (error);
+    (error.message);
   }
 };
 
@@ -63,7 +64,7 @@ export const getSortedTasks = async (req, res) => {
     });
     return res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    (error);
   }
 };
 
@@ -80,10 +81,10 @@ export const deleteTask = async (req, res) => {
       },
     });
     
-    console.log("Task Deleted!", taskId)
+    ("Task Deleted!", taskId)
     return res.status(200).send(taskId);
   } catch (error) {
-    console.log(error);
+    (error);
   }
 };
 
@@ -106,10 +107,10 @@ export const updateTask = async (req, res) => {
       },
     });
 
-    console.log("Task is updated", taskId)
+    ("Task is updated", taskId)
 
     return res.status(200).send(data);
   } catch (error) {
-    console.log(error);
+    (error);
   }
 };

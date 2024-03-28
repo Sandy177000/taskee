@@ -47,7 +47,7 @@ function Task({ handleEdit, task, index }) {
       status,
     };
 
-    console.log(taskData);
+    (taskData);
     dispatch(updateTaskAsync(taskData));
   };
 

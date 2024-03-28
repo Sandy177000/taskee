@@ -30,6 +30,7 @@ function App() {
   let tasks = useSelector(selectAllTasks);
   let status = useSelector(selectStatus);
 
+
   const handleAddNewTaskForm = () => {
     setTaskForm(!taskForm);
     if (editMode) {
@@ -127,17 +128,17 @@ function App() {
   };
 
   const handleAuth = (e) => {
-    console.log(e.target.value);
+    (e.target.value);
 
-    if(e.target.value==="qwerty"){
-      setValidUser(true)
+    if (e.target.value === "qwerty") {
+      setValidUser(true);
     }
   };
 
   useEffect(() => {
     // CALLING GET-ALL-TASK API
     dispatch(getAllTasksAsync());
-    console.log("getting all tasks...");
+    ("getting all tasks...");
   }, [dispatch]);
 
   useEffect(() => {
@@ -355,7 +356,11 @@ function App() {
             <div className="flex  relative justify-center w-[100%] ">
               <div className="bg-[#1f1f1f] border-[#303030] border-[1px] flex-col gap-7  rounded-md  flex items-center justify-center lg:w-[30%] h-[25rem] ">
                 <p>Welcome to Taskee</p>
-                <img src={ChibiMe} alt="" className="w-[9rem] h-[9rem] bouncer " />
+                <img
+                  src={ChibiMe}
+                  alt=""
+                  className="w-[9rem] h-[9rem] bouncer "
+                />
 
                 <input
                   type="password"
