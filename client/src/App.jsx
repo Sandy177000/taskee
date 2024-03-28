@@ -139,7 +139,7 @@ function App() {
   }, [tasks]);
 
   return (
-    <div className="main flex gap-3 justify-center items-center  h-[90vh]  overflow-auto lg:text-[16px] text-[13px]">
+    <div className="main flex gap-3 justify-center items-center  h-[90vh]  overflow-y-auto  lg:text-[16px] text-[13px]">
       <ToastContainer />
       <div className="flex lg:w-[50vw] w-[80vw] h-[80vh] flex-col rounded-md border-[#232323] border-2  mt-[30px]">
         <div className="flex bg-[#1f1f1f] rounded-tl rounded-tr w-full h-[10%] justify-between">
@@ -187,7 +187,7 @@ function App() {
       </div>
 
       <div
-        className={`flex  opacity-100 absolute z-10 w-[100vw]  transition-all duration-300 ease-in-out left-1
+        className={`flex  opacity-100 absolute z-10 w-[98vw]  transition-all duration-300 ease-in-out left-3
          ${
            taskForm
              ? "scale-80 top-[50px] opacity-100 "
@@ -289,7 +289,7 @@ function App() {
       </div>
 
       <div
-        className={`flex  opacity-100 absolute z-10 w-[100vw]  transition-all duration-300 ease-in-out left-1
+        className={`flex  opacity-100 absolute z-10 w-[98vw]  transition-all duration-300 ease-in-out left-3
         ${
           completedTaskVisible
             ? "scale-80 top-[100px] opacity-100 "
