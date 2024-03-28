@@ -8,7 +8,7 @@ React, Redux ToolKit (State Management), TailwindCSS (Styling)
 ### Backend : 
 Nodejs, Express, MongoDB (Database), Prisma (ORM), 
 
-## Features:
+## Features
 Create a task,
 Update task (status, priority, other details),
 delete task.
